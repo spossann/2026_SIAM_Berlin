@@ -1,0 +1,177 @@
+[
+  {
+    "objectID": "index.html#struphy-is",
+    "href": "index.html#struphy-is",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Struphy is …",
+    "text": "Struphy is …\n\n… an open-source Python package for solving partial differential equations (PDEs), primarily designed for plasma physics — though not limited to it.\n\n\n💯% Python — Write models in clean, readable Python.\n💥 Pyccel-powered kernels — High-performance Fortran code generated via Pyccel.\n💻 Simple API — Run complex plasma simulations with minimal boilerplate.\n🌐 Open-source & community-driven — Built for collaboration and accessibility."
+  },
+  {
+    "objectID": "index.html#numerical-methods",
+    "href": "index.html#numerical-methods",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Numerical methods",
+    "text": "Numerical methods\nParticle-in-cell (PIC) method for kinetic models:\n\\[\nf(t, x, v) = \\sum_k w_k\\, \\delta(x - x_k(t))\\, \\delta(v - v_k(t))\n\\]\n\nFinite element exterior calculus (FEEC) for fluid/field variables:\n\\[\n\\mathbf E(t, x) = \\sum_i e_i(t)\\, \\mathbf \\Lambda^1_i(x)\\,, \\qquad \\mathbf B(t, x) = \\sum_i b_i(t)\\, \\mathbf \\Lambda^2_i(x)\n\\]\n\nSmoothed Particle Hydrodynamics (SPH) for fluid models:\n\\[\nn(t, x) = \\sum_k w_k\\, W(x - x_k(t))\\,,\\qquad \\mathbf u(t, x) = \\sum_k \\frac{w_k}{n(t, x_k(t))}\\, \\mathbf v_k(t)\\, W(x - x_k(t))\n\\]"
+  },
+  {
+    "objectID": "index.html#installation-options",
+    "href": "index.html#installation-options",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Installation Options",
+    "text": "Installation Options\n\nInstall on bare metal (Linux/macOS)\n\nFrom PyPI (recommended)\nFrom source (for development)\n\nUse Docker (cross-platform)\nRun tutorials on Binder (cloud-based)\n\n\n🌐 Repo: github.com/struphy-hub/struphy\n\n\n🌐 Docs: struphy-hub.github.io/struphy/index.html\n\n\n🌐 Tutorials: github.com/struphy-hub/struphy-tutorials"
+  },
+  {
+    "objectID": "index.html#install-on-bare-metal-linuxmacos",
+    "href": "index.html#install-on-bare-metal-linuxmacos",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Install on bare metal (Linux/macOS)",
+    "text": "Install on bare metal (Linux/macOS)\n\n\nUse a virtual environment:\n\npython -m venv struphy-env\nsource struphy-env/bin/activate \n\n\n\nFrom PyPI (with physics packages):\n\npip install -U struphy[phys]\n\n\n\nFrom source (for development):\n\ngit clone https://github.com/struphy-hub/struphy.git\ncd struphy\npip install -e .[phys,dev]\n\n\n\nCompile kernels (Fortran code generated via Pyccel):\n\nstruphy compile"
+  },
+  {
+    "objectID": "index.html#use-docker-cross-platform",
+    "href": "index.html#use-docker-cross-platform",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Use Docker (cross-platform)",
+    "text": "Use Docker (cross-platform)\n\n\nPull the latest image from Docker Hub and run it:\n\ndocker pull spossann/struphy:main\ndocker run -it --rm spossann/struphy:main\n\n\n\nList the existing environments and activate one:\n\nls struphy_*\nsource struphy_fortran_/env_fortran_/bin/activate\n\nCheck the compilation:\n\nstruphy compile --status"
+  },
+  {
+    "objectID": "index.html#run-tutorials-on-binder-cloud-based",
+    "href": "index.html#run-tutorials-on-binder-cloud-based",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Run tutorials on Binder (cloud-based)",
+    "text": "Run tutorials on Binder (cloud-based)\n\n🌐 Tutorials: github.com/struphy-hub/struphy-tutorials\n\n\n\n\n\n\nWe will run through the first few tutorials together, but feel free to explore the rest on your own time!"
+  },
+  {
+    "objectID": "index.html#models-pdes",
+    "href": "index.html#models-pdes",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Models (PDEs)",
+    "text": "Models (PDEs)\n\nfrom struphy import models\nmodels.__all__\n\n['ColdPlasma',\n 'ColdPlasmaVlasov',\n 'DeterministicParticleDiffusion',\n 'DriftKineticElectrostaticAdiabatic',\n 'GuidingCenter',\n 'HasegawaWakatani',\n 'LinearExtendedMHDuniform',\n 'LinearMHD',\n 'LinearMHDDriftkineticCC',\n 'LinearMHDVlasovCC',\n 'LinearMHDVlasovPC',\n 'LinearVlasovAmpereOneSpecies',\n 'LinearVlasovMaxwellOneSpecies',\n 'Maxwell',\n 'Poisson',\n 'PressureLessSPH',\n 'RandomParticleDiffusion',\n 'ShearAlfven',\n 'TwoFluidQuasiNeutralToy',\n 'VariationalBarotropicFluid',\n 'VariationalCompressibleFluid',\n 'VariationalPressurelessFluid',\n 'ViscoResistiveDeltafMHD',\n 'ViscoResistiveDeltafMHD_with_q',\n 'ViscoResistiveLinearMHD',\n 'ViscoResistiveLinearMHD_with_q',\n 'ViscoResistiveMHD',\n 'ViscoResistiveMHD_with_p',\n 'ViscoResistiveMHD_with_q',\n 'ViscousEulerSPH',\n 'ViscousFluid',\n 'Vlasov',\n 'VlasovAmpereOneSpecies',\n 'VlasovMaxwellOneSpecies']"
+  },
+  {
+    "objectID": "index.html#model-info",
+    "href": "index.html#model-info",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Model Info",
+    "text": "Model Info\n\nfrom struphy.models import Maxwell\nMaxwell.info()\n\n\nMaxwell's equations in vacuum for electromagnetic field evolution.\n\nThis model simulates the propagation of electromagnetic waves in vacuum using Maxwell's equations\nwithout sources. It uses a finite element exterior calculus (FEEC) formulation with the electric field\nin H(curl) and the magnetic field in H(div) spaces.\n\n\n\nGoverning Equations\n\nAmpère's law (no current):\n\n∂𝐄∂t - ∇×𝐁 = 0\nFaraday's law:\n\n∂𝐁∂t + ∇×𝐄 = 0\nNormalization\n\nFields are normalized such that:\n\nÊ = c B̂\nwhere c is the speed of light.\n\n\nSpecies\n\n\n\n    em_fields.e_field - Electric field (H(curl) space)\n    em_fields.b_field - Magnetic field (H(div) space)\n\n\n\nPropagators\n\n\n\n    struphy.propagators.propagators_fields.Maxwell - Time integration scheme\n\n\n\nScalar Quantities\n\nThe following quantities are tracked during simulation:\n\n\n\n    Electric energy: EE = ½ ∫ |𝐄|²   dV\n    Magnetic energy: EB = ½ ∫ |𝐁|²   dV\n    Total energy: Eₜₒₜₐₗ = EE + EB\n\n\n\nModel Properties\n\n\n\n    Model type: Toy\n    Velocity scale: Speed of light\n    Bulk species: None\n\n\n\nSee Also\n\n\n\n    struphy.models.base.StruphyModel - Base class for all Struphy models\n    struphy.propagators.propagators_fields.Maxwell - Maxwell propagator implementation\n\n\n\nExamples\n\nCreate and initialize a Maxwell model:\n\nfrom struphy.models.maxwell import Maxwell\n\nmodel = Maxwell()\n# Fields are accessible via:\n# model.em_fields.e_field\n# model.em_fields.b_field"
+  },
+  {
+    "objectID": "index.html#create-a-simulation",
+    "href": "index.html#create-a-simulation",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Create a Simulation",
+    "text": "Create a Simulation\n\nfrom struphy import Simulation\n\nmodel = Maxwell()\nsim = Simulation(model=model)"
+  },
+  {
+    "objectID": "index.html#run",
+    "href": "index.html#run",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Run",
+    "text": "Run\n\nsim.run()\n\n\nStarting simulation run for model Maxwell ...\n\nPROPAGATOR OPTIONS:\n\nOptions for propagator 'Maxwell':\n    algo:            implicit\n    solver:          pcg\n    precond:         MassMatrixPreconditioner\n    solver_params:   SolverParameters(tol=1e-08, maxiter=3000, info=False, verbose=False, recycle=True)\n    butcher:         None\n\nINITIAL CONDITIONS:\n\nVariable 'e_field' of species 'EMFields' - no background.\n\nVariable 'e_field' of species 'EMFields' - no perturbation.\n\nVariable 'b_field' of species 'EMFields' - no background.\n\nVariable 'b_field' of species 'EMFields' - no perturbation.\n\nAllocating simulation data ...\n\nWARNING: Class \"BasisProjectionOperators\" called with p=(1, 1, 1) (interpolation of piece-wise constants should be avoided).\n\nRank 0: executing run() for model Maxwell ...\n\nINITIAL SCALAR QUANTITIES:\nelectric energy:                          0.00e+00\nmagnetic energy:                          0.00e+00\ntotal energy:                             0.00e+00\n\n\nSTART TIME STEPPING WITH 'LieTrotter' SPLITTING:\n\nTime steps done: 3\nwall-clock time of simulation [sec]:  0.371448278427124\n\nStruphy run finished."
+  },
+  {
+    "objectID": "index.html#run-simulation-verbosely",
+    "href": "index.html#run-simulation-verbosely",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Run Simulation verbosely",
+    "text": "Run Simulation verbosely\n\nsim.run(verbose=True)\n\n\nStarting simulation run for model Maxwell ...\nRemoved existing file /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1/data/data_proc0.hdf5\n\nPROPAGATOR OPTIONS:\n\nOptions for propagator 'Maxwell':\n    algo:            implicit\n    solver:          pcg\n    precond:         MassMatrixPreconditioner\n    solver_params:   SolverParameters(tol=1e-08, maxiter=3000, info=False, verbose=False, recycle=True)\n    butcher:         None\n\nINITIAL CONDITIONS:\n\nVariable 'e_field' of species 'EMFields' - no background.\n\nVariable 'e_field' of species 'EMFields' - no perturbation.\n\nVariable 'b_field' of species 'EMFields' - no background.\n\nVariable 'b_field' of species 'EMFields' - no perturbation.\n\nAllocating simulation data ...\n\nDERHAM:\nnumber of elements:       (24, 10, 1)\nspline degrees:           (1, 1, 1)\nperiodic bcs:             (True, True, True)\nhom. Dirichlet bc:        ((False, False), (False, False), (False, False))\nGL quad pts (L2):         None\nGL quad pts (hist):       None\nMPI proc. per dir.:       [1, 1, 1]\nuse polar splines:        False\ndomain on process 0:      [ 0.  1. 24.  0.  1. 10.  0.  1.  1.]\n\nWARNING: Class \"BasisProjectionOperators\" called with p=(1, 1, 1) (interpolation of piece-wise constants should be avoided).\n\nAllocated SplineFuntion 'e_field' in space 'Hcurl'.\n\nAllocated SplineFuntion 'b_field' in space 'Hdiv'.\n\nAssembling matrix of WeightedMassOperator \"M1\" with V=Hcurl, W=Hcurl.\nAssemble block (0, 0)\nAssemble block (1, 1)\nAssemble block (2, 2)\nDone.\n\nAssembling matrix of WeightedMassOperator \"M2\" with V=Hdiv, W=Hdiv.\nAssemble block (0, 0)\nAssemble block (1, 1)\nAssemble block (2, 2)\nDone.\n\nAllocated propagator 'Maxwell'.\n... Done.\n\nPLASMA PARAMETERS:\nPlasma volume:            1.000e+00 m³\nTransit length:           1.000e+00 m\nAvg. magnetic field:       nan T\nMax magnetic field:       0.000e+00 T\nMin magnetic field:       0.000e+00 T\n\nRank 0: executing run() for model Maxwell ...\n\nINITIAL SCALAR QUANTITIES:\nelectric energy:                          0.00e+00\nmagnetic energy:                          0.00e+00\ntotal energy:                             0.00e+00\n\n\nSTART TIME STEPPING WITH 'LieTrotter' SPLITTING:\ntime step:                                     1/3\nnormalized time:               1.00e-02 / 3.00e-02\nphysical time [s]:             3.34e-11 / 1.00e-10\nwall clock time [s]:                        0.5923\nlast step duration [s]:                     0.0091\nelectric energy:                          0.00e+00\nmagnetic energy:                          0.00e+00\ntotal energy:                             0.00e+00\n\ntime step:                                     2/3\nnormalized time:               2.00e-02 / 3.00e-02\nphysical time [s]:             6.67e-11 / 1.00e-10\nwall clock time [s]:                        0.6056\nlast step duration [s]:                     0.0066\nelectric energy:                          0.00e+00\nmagnetic energy:                          0.00e+00\ntotal energy:                             0.00e+00\n\ntime step:                                     3/3\nnormalized time:               3.00e-02 / 3.00e-02\nphysical time [s]:             1.00e-10 / 1.00e-10\nwall clock time [s]:                        0.6179\nlast step duration [s]:                     0.0065\nelectric energy:                          0.00e+00\nmagnetic energy:                          0.00e+00\ntotal energy:                             0.00e+00\n\n\nTime steps done: 3\nwall-clock time of simulation [sec]:  0.627432107925415\n\nStruphy run finished."
+  },
+  {
+    "objectID": "index.html#set-initial-conditions",
+    "href": "index.html#set-initial-conditions",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Set initial conditions",
+    "text": "Set initial conditions\n\nmodel\n\nMaxwell\n    em_fields:\n        e_field:    FEECVariable (Hcurl)\n        b_field:    FEECVariable (Hdiv)\n\n\n\nfrom struphy import perturbations\n\nfun1 = perturbations.ModesCos(ls=(1,), amps=(1e-1,), comp=0)\nfun2 = perturbations.ModesSin(ls=(2,), amps=(1e-2,), comp=1)\n\nmodel.em_fields.e_field.add_perturbation(perturbation=fun1)\nmodel.em_fields.e_field.add_perturbation(perturbation=fun2)"
+  },
+  {
+    "objectID": "index.html#run-and-post-process",
+    "href": "index.html#run-and-post-process",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Run and post process",
+    "text": "Run and post process\n\nsim.run()\n\n\nsim.pproc()\n\n\nPost-processing path /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1\n\nReading hdf5 data of following species:\nem_fields:\n  b_field: &lt;HDF5 group \"/feec/em_fields/b_field\" (3 members)&gt;\n  e_field: &lt;HDF5 group \"/feec/em_fields/e_field\" (3 members)&gt;\n\n\n\nCreation of Struphy Fields done.\n\nEvaluating fields ...\n\n\n\nCreating vtk in /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1/post_processing/fields_data ...\n\n\n\nNo kinetic data found in hdf5 file, skipping post-processing of kinetic data."
+  },
+  {
+    "objectID": "index.html#load-plotting-data",
+    "href": "index.html#load-plotting-data",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Load plotting data",
+    "text": "Load plotting data\n\nsim.load_plotting_data()\n\n\nLoading post-processed plotting data:\nData path: /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1/post_processing\n\nFiles in /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1/post_processing/fields_data/em_fields: ['e_field_log.bin', 'b_field_log.bin']\n\nThe following data has been loaded:\n\ngrids:\nself.t_grid.shape =(4,)\nself.grids_log[0].shape =(25,)\nself.grids_log[1].shape =(11,)\nself.grids_log[2].shape =(2,)\nself.grids_phy[0].shape =(25, 11, 2)\nself.grids_phy[1].shape =(25, 11, 2)\nself.grids_phy[2].shape =(25, 11, 2)\n\nself.spline_values:\n    em_fields\n        e_field_log\n        b_field_log\n\nself.orbits:\n\nself.f:\n\nself.n_sph:"
+  },
+  {
+    "objectID": "index.html#inspect-data-types",
+    "href": "index.html#inspect-data-types",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Inspect data types",
+    "text": "Inspect data types\n\ne_field = sim.spline_values.em_fields.e_field_log\ne_field\n\ntype(self.data) = &lt;class 'dict'&gt;\nlen(self.data) = 4\nkey = np.float64(0.0)    shape = [(25, 11, 2), (25, 11, 2), (25, 11, 2)]\nkey = np.float64(0.01)   shape = [(25, 11, 2), (25, 11, 2), (25, 11, 2)]\nkey = np.float64(0.02)   shape = [(25, 11, 2), (25, 11, 2), (25, 11, 2)]\nkey = np.float64(0.03)   shape = [(25, 11, 2), (25, 11, 2), (25, 11, 2)]"
+  },
+  {
+    "objectID": "index.html#plot-initial-conditions",
+    "href": "index.html#plot-initial-conditions",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Plot initial conditions",
+    "text": "Plot initial conditions\n\ne_init = e_field.data[0.0]\nprint(f\"{e_init[1].shape = }\")\n\nfrom matplotlib import pyplot as plt\n\nfig, axes = plt.subplots(1, 3, figsize=(15, 4))\n\n# Plot 1: First component in x-direction\naxes[0].plot(e_init[0][:, 0, 0])\naxes[0].set_title(\"E-field component 1 (x-direction)\")\naxes[0].set_xlabel(\"x\")\naxes[0].set_ylabel(\"Value\")\n\n# Plot 2: Add your second plot\naxes[1].plot(e_init[1][:, 0, 0])\naxes[1].set_title(\"E-field component 2 (x-direction)\")\naxes[1].set_xlabel(\"x\")\naxes[1].set_ylabel(\"Value\")\n\n# Plot 3: Add your third plot\naxes[2].plot(e_init[2][:, 0, 0])\naxes[2].set_title(\"E-field component 3 (x-direction)\")\naxes[2].set_xlabel(\"x\")\naxes[2].set_ylabel(\"Value\")\n\nplt.tight_layout()\n\ne_init[1].shape = (25, 11, 2)"
+  },
+  {
+    "objectID": "index.html#default-launch-files-from-cli",
+    "href": "index.html#default-launch-files-from-cli",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Default launch files from CLI",
+    "text": "Default launch files from CLI\nstruphy params MODEL\nThis will create a file params_MODEL.py in the current working directory.\nTo run the model type\npython params_MODEL.py\nFor parallel runs, use\nmpirun -n N python params_MODEL.py\nor copy the command to a job script for your cluster’s scheduler (e.g., SLURM, PBS)."
+  },
+  {
+    "objectID": "index.html#launch-file-api",
+    "href": "index.html#launch-file-api",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Launch file API",
+    "text": "Launch file API\n\nfrom struphy import (\n    BaseUnits,\n    DerhamOptions,\n    EnvironmentOptions,\n    FieldsBackground,\n    Simulation,\n    Time,\n    domains,\n    equils,\n    grids,\n    perturbations,\n)\n\n# For particles:\nfrom struphy import (\n    BinningPlot,\n    BoundaryParameters,\n    KernelDensityPlot,\n    LoadingParameters,\n    WeightsParameters,\n    maxwellians,\n)"
+  },
+  {
+    "objectID": "index.html#example-linearmhd",
+    "href": "index.html#example-linearmhd",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Example: LinearMHD",
+    "text": "Example: LinearMHD\n\nfrom struphy.models import LinearMHD\nLinearMHD.info()\n\n\nLinear ideal MHD with zero-flow equilibrium for magnetohydrodynamic wave propagation.\n\nThis model simulates small-amplitude perturbations in a magnetized plasma with a static\nequilibrium magnetic field 𝐁₀ and zero background flow. The model solves the linearized\nideal magnetohydrodynamic (MHD) equations, which couple fluid dynamics (density, velocity, pressure)\nwith magnetic field evolution. The system supports both Alfvén waves (incompressible shear) and\nmagnetosonic waves (compressible fast and slow modes).\n\n\n\nGoverning Equations\n\nContinuity (mass conservation):\n\n∂ρ̃∂t + ∇ · (ρ₀ Ũ) = 0\nMomentum (Lorentz force):\n\nρ₀ ∂Ũ∂t + ∇ p̃ = (∇ × B̃) × 𝐁₀ + (∇ × 𝐁₀) × B̃\nEnergy (adiabatic process):\n\n∂p̃∂t + ∇ · (p₀ Ũ) + 23 p₀ ∇ · Ũ = 0\nInduction (Faraday's law):\n\n∂B̃∂t - ∇ × (Ũ × 𝐁₀) = 0\nNormalization\n\nAll velocities are normalized by the Alfvén velocity:\n\nÛ = v̂A = B̂₀√(μ₀ ρ₀)\nPerturbation Variables\n\nAll quantities in the equations represent perturbations around equilibrium:\n\n\n\n    ρ̃ - Density perturbation\n    Ũ - Velocity perturbation\n    p̃ - Pressure perturbation\n    B̃ - Magnetic field perturbation\n\n\nEquilibrium quantities (with subscript 0) are stationary:\n\n\n\n    ρ₀ - Static background density\n    p₀ - Static background pressure\n    𝐁₀ - Static background magnetic field\n\n\n\nSpecies\n\n\n\n    em_fields.b_field - Magnetic field perturbation (H(div) space)\n    mhd.density - Density perturbation (L² space)\n    mhd.velocity - Velocity perturbation (H(div) space)\n    mhd.pressure - Pressure perturbation (L² space)\n\n\n\nWave Modes\n\nThe linear MHD system supports three wave types:\n\n\n\n    Alfvén waves: Incompressible shear waves propagating along 𝐁₀ with velocity vA\n    Fast magnetosonic wave: Compressible wave with phase velocity vfast &gt; vA\n    Slow magnetosonic wave: Compressible wave with phase velocity vslow &lt; vA\n\n\n\nPropagators\n\nTime integration is performed by the following propagators (in sequence):\n\n\n\n    struphy.propagators.propagators_fields.ShearAlfven - Evolves Alfvén waves (velocity and magnetic field coupling)\n\n\n\n\n    struphy.propagators.propagators_fields.Magnetosonic - Evolves compressible modes (density, velocity, pressure)\n\n\n\nScalar Quantities\n\nThe following energies are tracked during simulation:\n\n\n\n    Kinetic energy (perturbation): EU = ½ ∫ ρ₀ |Ũ|²   dV\n    Magnetic energy (perturbation): EB = ½ ∫ |B̃|²⁄μ₀   dV\n    Internal energy (perturbation): Eₚ = ∫ p̃⁄γ - 1   dV (γ = 5/3)\n    Total perturbed energy: Eₜₒₜ = EU + EB + Eₚ\n    Equilibrium magnetic energy: EB0 = ½ ∫ |𝐁₀|²⁄μ₀   dV\n    Equilibrium internal energy: Eₚ₀ = ∫ p₀⁄γ - 1   dV\n    Total magnetic energy: EB,tot = ½ ∫ |𝐁₀ + B̃|²⁄μ₀   dV\n\n\n\nModel Properties\n\n\n\n    Model type: Fluid\n    Velocity scale: Alfvén velocity\n    Bulk species: mhd\n    Assumptions: Zero-flow equilibrium, linear perturbations, ideal MHD\n\n\n\nKey Assumptions\n\n\n\n    Perturbations are small (linear theory valid)\n    Equilibrium is static: 𝐔₀ = 0\n    Ideal MHD: infinite conductivity, no dissipation\n    Adiabatic process: polytropic index γ = 5/3\n\n\n\nSee Also\n\n\n\n    struphy.models.base.StruphyModel - Base class for all Struphy models\n    struphy.propagators.propagators_fields.ShearAlfven - Alfvén wave propagator\n    struphy.propagators.propagators_fields.Magnetosonic - Magnetosonic wave propagator\n\n\n\nReferences\n\n\n\n    Boyd, T. J. M., & Sanderson, J. J. (2003). The physics of plasmas. Cambridge University Press.\n    Goedbloed, J. P., Keppens, R., & Poedts, S. (2019). Magnetohydrodynamics of laboratory and astrophysical plasmas. Cambridge University Press.\n\n\n\nExamples\n\nCreate and initialize a linear MHD model:\n\nfrom struphy.models.linear_mhd import LinearMHD\n\nmodel = LinearMHD()\n\n# Access fields\n# model.em_fields.b_field     - Magnetic field perturbation\n# model.mhd.density           - Density perturbation\n# model.mhd.velocity          - Velocity perturbation\n# model.mhd.pressure          - Pressure perturbation\n\n# Track energies during simulation\n# model.scalar_quantities[\"en_U\"]  - Kinetic energy\n# model.scalar_quantities[\"en_B\"]  - Magnetic energy\n# model.scalar_quantities[\"en_p\"]  - Internal energy"
+  },
+  {
+    "objectID": "index.html#example-linearmhd-ctd.",
+    "href": "index.html#example-linearmhd-ctd.",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Example: LinearMHD (ctd.)",
+    "text": "Example: LinearMHD (ctd.)\n\nmodel = LinearMHD()\ndomain = domains.DESCunit()\nequil = equils.DESCequilibrium(use_nfp=False)\n\nsim = Simulation(\n    model=model,\n    domain=domain,\n    equil=equil,\n)\n\nsim.show_domain(scalars=\"absB0\", window_size = (850, 250), zoom_factor=2.0)"
+  },
+  {
+    "objectID": "index.html#line-highlighting",
+    "href": "index.html#line-highlighting",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Line Highlighting",
+    "text": "Line Highlighting\n\nHighlight specific lines for emphasis\nIncrementally highlight additional lines\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={'projection': 'polar'})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()"
+  },
+  {
+    "objectID": "index.html#executable-code",
+    "href": "index.html#executable-code",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Executable Code",
+    "text": "Executable Code\n\nfrom struphy import domains\ndomain = domains.Cuboid()\ndomain.show()"
+  },
+  {
+    "objectID": "index.html#latex-equations",
+    "href": "index.html#latex-equations",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "LaTeX Equations",
+    "text": "LaTeX Equations\nMathJax rendering of equations to HTML\n\n\n\\begin{gather*}\na_1=b_1+c_1\\\\\na_2=b_2+c_2-d_2+e_2\n\\end{gather*}\n\n\\begin{align}\na_{11}& =b_{11}&\n  a_{12}& =b_{12}\\\\\na_{21}& =b_{21}&\n  a_{22}& =b_{22}+c_{22}\n\\end{align}\n\n\\[\\begin{gather*}\na_1=b_1+c_1\\\\\na_2=b_2+c_2-d_2+e_2\n\\end{gather*}\\]\n\\[\\begin{align}\na_{11}& =b_{11}&\n  a_{12}& =b_{12}\\\\\na_{21}& =b_{21}&\n  a_{22}& =b_{22}+c_{22}\n\\end{align}\\]"
+  },
+  {
+    "objectID": "index.html#column-layout",
+    "href": "index.html#column-layout",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Column Layout",
+    "text": "Column Layout\nArrange content into columns of varying widths:\n\n\nMotor Trend Car Road Tests\nThe data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles.\n\n\n\nknitr::kable(head(mtcars)[,c(\"mpg\", \"cyl\", \"disp\", \"hp\", \"wt\")])"
+  },
+  {
+    "objectID": "index.html#incremental-lists",
+    "href": "index.html#incremental-lists",
+    "title": "Struphy 3.0  Structure-Preserving  Hybrid Code",
+    "section": "Incremental Lists",
+    "text": "Incremental Lists\nLists can optionally be displayed incrementally:\n\nFirst item\nSecond item\nThird item"
+  }
+]
