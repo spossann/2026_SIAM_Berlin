@@ -219,12 +219,26 @@
 <div style="text-align: center; margin-top: 1em">
 <p>… an open-source Python package for solving <strong>partial differential equations (PDEs)</strong>, primarily designed for plasma physics — though not limited to it.</p>
 </div>
+<div class="fragment">
 <ul>
 <li><span class="emoji" data-emoji="100">💯</span>% <strong>Python</strong> — Write models in clean, readable Python.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><span class="emoji" data-emoji="boom">💥</span> <strong>Pyccel-powered kernels</strong> — High-performance Fortran code generated via <a href="https://github.com/pyccel/pyccel">Pyccel</a>.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><span class="emoji" data-emoji="computer">💻</span> <strong>Simple API</strong> — Run complex plasma simulations with minimal boilerplate.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><span class="emoji" data-emoji="globe_with_meridians">🌐</span> <strong>Open-source &amp; community-driven</strong> — Built for collaboration and accessibility.</li>
 </ul>
+</div>
 </section>
 <section id="numerical-methods" class="slide level2">
 <h2>Numerical methods</h2>
@@ -232,6 +246,7 @@
 <p><span class="math display">\[
 f(t, x, v) = \sum_k w_k\, \delta(x - x_k(t))\, \delta(v - v_k(t))
 \]</span></p>
+<div class="fragment">
 <!-- ```{=tex}
 \begin{gather*}
 f(t, x, v) = \sum_k w_k\, \delta(x - x_k(t))\, \delta(v - v_k(t))
@@ -246,6 +261,8 @@ f(t, x, v) = \sum_k w_k\, \delta(x - x_k(t))\, \delta(v - v_k(t))
 \mathbf E(t, x) = \sum_i e_i(t)\, \mathbf \Lambda^1_i(x)\,, \qquad \mathbf B(t, x) = \sum_i b_i(t)\, \mathbf \Lambda^2_i(x)
 \end{gather*}
 ``` -->
+</div>
+<div class="fragment">
 <p><strong>Smoothed Particle Hydrodynamics (SPH)</strong> for fluid models:</p>
 <p><span class="math display">\[
 n(t, x) = \sum_k w_k\, W(x - x_k(t))\,,\qquad \mathbf u(t, x) = \sum_k \frac{w_k}{n(t, x_k(t))}\, \mathbf v_k(t)\, W(x - x_k(t))
@@ -255,6 +272,10 @@ n(t, x) = \sum_k w_k\, W(x - x_k(t))\,,\qquad \mathbf u(t, x) = \sum_k \frac{w_k
 n(t, x) = \sum_k w_k\, W(x - x_k(t))\,,\qquad \mathbf u(t, x) = \sum_k \frac{w_k}{n(t, x_k(t))}\, \mathbf v_k(t)\, W(x - x_k(t))
 \end{gather*}
 ``` -->
+</div>
+<div class="fragment">
+<p>Struphy provides MPI/OpenMP data structures for these methods - and hopefully others in the future!</p>
+</div>
 </section>
 <section>
 <section id="getting-the-code" class="title-slide slide level1 center">
@@ -353,7 +374,7 @@ n(t, x) = \sum_k w_k\, W(x - x_k(t))\,,\qquad \mathbf u(t, x) = \sum_k \frac{w_k
 </section>
 <section id="models-pdes" class="slide level2">
 <h2>Models (PDEs)</h2>
-<div id="4d188423" class="cell" data-execution_count="1">
+<div id="e741db44" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> models</span>
 <span id="cb8-2"><a></a>models.<span class="va">__all__</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
@@ -396,7 +417,7 @@ n(t, x) = \sum_k w_k\, W(x - x_k(t))\,,\qquad \mathbf u(t, x) = \sum_k \frac{w_k
 </section>
 <section id="model-info" class="slide level2 scrollable">
 <h2>Model Info</h2>
-<div id="44f3a1bc" class="cell" data-execution_count="2">
+<div id="5b41a553" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="im">from</span> struphy.models <span class="im">import</span> Maxwell</span>
 <span id="cb10-2"><a></a>Maxwell.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -488,68 +509,99 @@ model = Maxwell()
 </section>
 <section id="create-a-simulation" class="slide level2">
 <h2>Create a Simulation</h2>
-<div id="469cab77" class="cell" data-execution_count="3">
+<div id="3e53bf3e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> Simulation</span>
 <span id="cb11-2"><a></a></span>
 <span id="cb11-3"><a></a>model <span class="op">=</span> Maxwell()</span>
-<span id="cb11-4"><a></a>sim <span class="op">=</span> Simulation(model<span class="op">=</span>model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-4"><a></a>sim <span class="op">=</span> Simulation(model<span class="op">=</span>model, verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+SIMULATION PARAMETERS:
+
+Model:
+Maxwell
+    em_fields:
+        e_field:    FEECVariable (Hcurl)
+        b_field:    FEECVariable (Hdiv)
+
+Parameter file path:
+None
+
+Environment options:
+out_folders:         /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin
+sim_folder:          sim_1
+restart:             False
+max_runtime:         300
+save_step:           1
+sort_step:           0
+num_clones:          1
+profiling_activated: False
+profiling_trace:     False
+path_out:            /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1
+
+Base units:
+x:                   1.0 m
+B:                   1.0 T
+n:                   1.0 1e20/m^3
+kBT:                 None keV
+
+Time stepping options:
+dt:                  0.01
+Tend:                0.03
+split_algo:          LieTrotter
+
+Domain:
+Cuboid
+l1:                  0.0
+r1:                  1.0
+l2:                  0.0
+r2:                  1.0
+l3:                  0.0
+r3:                  1.0
+
+Fluid equilibrium:
+None
+Grid:
+Nel:                 (24, 10, 1)
+mpi_dims_mask:       (True, True, True)
+
+Derham options:
+p:                   (1, 1, 1)
+spl_kind:            (True, True, True)
+dirichlet_bc:        ((False, False), (False, False), (False, False))
+nquads:              None
+nq_pr:               None
+polar_ck:            -1
+local_projectors:    False
+
+
+Instance of simulation for model Maxwell ...
+
+METADATA:
+platform:                 linux-x86_64
+python version:           3.12
+model name:               Maxwell
+parameter file:           None
+output folder:            /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1
+MPI processes:            1
+use MPI.COMM_WORLD:       (True,)
+number of domain clones:  1
+restart:                  False
+max wall-clock [min]:     300
+save interval [steps]:    1
+
+... Done.</code></pre>
+</div>
 </div>
 </section>
 <section id="run" class="slide level2">
 <h2>Run</h2>
-<div id="c93d71c3" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>sim.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5d6a5bb9" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>sim.run(verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Starting simulation run for model Maxwell ...
-
-PROPAGATOR OPTIONS:
-
-Options for propagator 'Maxwell':
-    algo:            implicit
-    solver:          pcg
-    precond:         MassMatrixPreconditioner
-    solver_params:   SolverParameters(tol=1e-08, maxiter=3000, info=False, verbose=False, recycle=True)
-    butcher:         None
-
-INITIAL CONDITIONS:
-
-Variable 'e_field' of species 'EMFields' - no background.
-
-Variable 'e_field' of species 'EMFields' - no perturbation.
-
-Variable 'b_field' of species 'EMFields' - no background.
-
-Variable 'b_field' of species 'EMFields' - no perturbation.
-
-Allocating simulation data ...
-
-WARNING: Class "BasisProjectionOperators" called with p=(1, 1, 1) (interpolation of piece-wise constants should be avoided).
-
-Rank 0: executing run() for model Maxwell ...
-
-INITIAL SCALAR QUANTITIES:
-electric energy:                          0.00e+00
-magnetic energy:                          0.00e+00
-total energy:                             0.00e+00
-
-
-START TIME STEPPING WITH 'LieTrotter' SPLITTING:
-
-Time steps done: 3
-wall-clock time of simulation [sec]:  0.371448278427124
-
-Struphy run finished.</code></pre>
-</div>
-</div>
-</section>
-<section id="run-simulation-verbosely" class="slide level2">
-<h2>Run Simulation verbosely</h2>
-<div id="87710a11" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>sim.run(verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Starting simulation run for model Maxwell ...
+Removed existing folder /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1/post_processing
 Removed existing file /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1/data/data_proc0.hdf5
 
 PROPAGATOR OPTIONS:
@@ -624,8 +676,8 @@ START TIME STEPPING WITH 'LieTrotter' SPLITTING:
 time step:                                     1/3
 normalized time:               1.00e-02 / 3.00e-02
 physical time [s]:             3.34e-11 / 1.00e-10
-wall clock time [s]:                        0.5923
-last step duration [s]:                     0.0091
+wall clock time [s]:                        0.3548
+last step duration [s]:                     0.0065
 electric energy:                          0.00e+00
 magnetic energy:                          0.00e+00
 total energy:                             0.00e+00
@@ -633,8 +685,8 @@ total energy:                             0.00e+00
 time step:                                     2/3
 normalized time:               2.00e-02 / 3.00e-02
 physical time [s]:             6.67e-11 / 1.00e-10
-wall clock time [s]:                        0.6056
-last step duration [s]:                     0.0066
+wall clock time [s]:                        0.3671
+last step duration [s]:                     0.0064
 electric energy:                          0.00e+00
 magnetic energy:                          0.00e+00
 total energy:                             0.00e+00
@@ -642,15 +694,15 @@ total energy:                             0.00e+00
 time step:                                     3/3
 normalized time:               3.00e-02 / 3.00e-02
 physical time [s]:             1.00e-10 / 1.00e-10
-wall clock time [s]:                        0.6179
-last step duration [s]:                     0.0065
+wall clock time [s]:                        0.3790
+last step duration [s]:                     0.0062
 electric energy:                          0.00e+00
 magnetic energy:                          0.00e+00
 total energy:                             0.00e+00
 
 
 Time steps done: 3
-wall-clock time of simulation [sec]:  0.627432107925415
+wall-clock time of simulation [sec]:  0.388641357421875
 
 Struphy run finished.</code></pre>
 </div>
@@ -658,32 +710,36 @@ Struphy run finished.</code></pre>
 </section>
 <section id="set-initial-conditions" class="slide level2">
 <h2>Set initial conditions</h2>
-<div id="6ca37c68" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div id="0a7c8d76" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Maxwell
     em_fields:
         e_field:    FEECVariable (Hcurl)
         b_field:    FEECVariable (Hdiv)</code></pre>
 </div>
 </div>
-<div id="a4e3353b" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> perturbations</span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a>fun1 <span class="op">=</span> perturbations.ModesCos(ls<span class="op">=</span>(<span class="dv">1</span>,), amps<span class="op">=</span>(<span class="fl">1e-1</span>,), comp<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb18-4"><a></a>fun2 <span class="op">=</span> perturbations.ModesSin(ls<span class="op">=</span>(<span class="dv">2</span>,), amps<span class="op">=</span>(<span class="fl">1e-2</span>,), comp<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-5"><a></a></span>
-<span id="cb18-6"><a></a>model.em_fields.e_field.add_perturbation(perturbation<span class="op">=</span>fun1)</span>
-<span id="cb18-7"><a></a>model.em_fields.e_field.add_perturbation(perturbation<span class="op">=</span>fun2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<div id="ac173cdd" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> perturbations</span>
+<span id="cb17-2"><a></a></span>
+<span id="cb17-3"><a></a>fun1 <span class="op">=</span> perturbations.ModesCos(ls<span class="op">=</span>(<span class="dv">1</span>,), amps<span class="op">=</span>(<span class="fl">1e-1</span>,), comp<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-4"><a></a>fun2 <span class="op">=</span> perturbations.ModesSin(ls<span class="op">=</span>(<span class="dv">2</span>,), amps<span class="op">=</span>(<span class="fl">1e-2</span>,), comp<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-5"><a></a></span>
+<span id="cb17-6"><a></a>model.em_fields.e_field.add_perturbation(perturbation<span class="op">=</span>fun1)</span>
+<span id="cb17-7"><a></a>model.em_fields.e_field.add_perturbation(perturbation<span class="op">=</span>fun2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </section>
 <section id="run-and-post-process" class="slide level2">
 <h2>Run and post process</h2>
-<div id="e12e4885" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>sim.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="608f4bcb" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>sim.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5bf79f3f" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>sim.pproc()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the <code>pproc</code> method for flexibility in post-processing and visualization:</p>
+<div class="fragment">
+<div id="80ee0664" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>sim.pproc()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Post-processing path /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1
@@ -708,11 +764,12 @@ Creating vtk in /home/IPP-AD/spossann/git_repos/2026_SIAM_Berlin/sim_1/post_proc
 No kinetic data found in hdf5 file, skipping post-processing of kinetic data.</code></pre>
 </div>
 </div>
+</div>
 </section>
 <section id="load-plotting-data" class="slide level2">
 <h2>Load plotting data</h2>
-<div id="e6b70ae9" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a>sim.load_plotting_data()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="691ab57a" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a>sim.load_plotting_data()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loading post-processed plotting data:
@@ -747,10 +804,10 @@ self.n_sph:
 </section>
 <section id="inspect-data-types" class="slide level2">
 <h2>Inspect data types</h2>
-<div id="06509e40" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a></a>e_field <span class="op">=</span> sim.spline_values.em_fields.e_field_log</span>
-<span id="cb27-2"><a></a>e_field</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="12a0b6f2" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a>e_field <span class="op">=</span> sim.spline_values.em_fields.e_field_log</span>
+<span id="cb26-2"><a></a>e_field</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>type(self.data) = &lt;class 'dict'&gt;
 len(self.data) = 4
 key = np.float64(0.0)    shape = [(25, 11, 2), (25, 11, 2), (25, 11, 2)]
@@ -762,40 +819,40 @@ key = np.float64(0.03)   shape = [(25, 11, 2), (25, 11, 2), (25, 11, 2)]</code><
 </section>
 <section id="plot-initial-conditions" class="slide level2 scrollable">
 <h2>Plot initial conditions</h2>
-<div id="6d6faed1" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a>e_init <span class="op">=</span> e_field.data[<span class="fl">0.0</span>]</span>
-<span id="cb29-2"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>e_init[<span class="dv">1</span>]<span class="sc">.</span>shape <span class="op">=</span> <span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb29-3"><a></a></span>
-<span id="cb29-4"><a></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb29-5"><a></a></span>
-<span id="cb29-6"><a></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
-<span id="cb29-7"><a></a></span>
-<span id="cb29-8"><a></a><span class="co"># Plot 1: First component in x-direction</span></span>
-<span id="cb29-9"><a></a>axes[<span class="dv">0</span>].plot(e_init[<span class="dv">0</span>][:, <span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb29-10"><a></a>axes[<span class="dv">0</span>].set_title(<span class="st">"E-field component 1 (x-direction)"</span>)</span>
-<span id="cb29-11"><a></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"x"</span>)</span>
-<span id="cb29-12"><a></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Value"</span>)</span>
-<span id="cb29-13"><a></a></span>
-<span id="cb29-14"><a></a><span class="co"># Plot 2: Add your second plot</span></span>
-<span id="cb29-15"><a></a>axes[<span class="dv">1</span>].plot(e_init[<span class="dv">1</span>][:, <span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb29-16"><a></a>axes[<span class="dv">1</span>].set_title(<span class="st">"E-field component 2 (x-direction)"</span>)</span>
-<span id="cb29-17"><a></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"x"</span>)</span>
-<span id="cb29-18"><a></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Value"</span>)</span>
-<span id="cb29-19"><a></a></span>
-<span id="cb29-20"><a></a><span class="co"># Plot 3: Add your third plot</span></span>
-<span id="cb29-21"><a></a>axes[<span class="dv">2</span>].plot(e_init[<span class="dv">2</span>][:, <span class="dv">0</span>, <span class="dv">0</span>])</span>
-<span id="cb29-22"><a></a>axes[<span class="dv">2</span>].set_title(<span class="st">"E-field component 3 (x-direction)"</span>)</span>
-<span id="cb29-23"><a></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">"x"</span>)</span>
-<span id="cb29-24"><a></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">"Value"</span>)</span>
-<span id="cb29-25"><a></a></span>
-<span id="cb29-26"><a></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="91fcbfa7" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a>e_init <span class="op">=</span> e_field.data[<span class="fl">0.0</span>]</span>
+<span id="cb28-2"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>e_init[<span class="dv">1</span>]<span class="sc">.</span>shape <span class="op">=</span> <span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb28-3"><a></a></span>
+<span id="cb28-4"><a></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb28-5"><a></a></span>
+<span id="cb28-6"><a></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
+<span id="cb28-7"><a></a></span>
+<span id="cb28-8"><a></a><span class="co"># Plot 1: First component in x-direction</span></span>
+<span id="cb28-9"><a></a>axes[<span class="dv">0</span>].plot(e_init[<span class="dv">0</span>][:, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb28-10"><a></a>axes[<span class="dv">0</span>].set_title(<span class="st">"E-field component 1 (x-direction)"</span>)</span>
+<span id="cb28-11"><a></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb28-12"><a></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"Value"</span>)</span>
+<span id="cb28-13"><a></a></span>
+<span id="cb28-14"><a></a><span class="co"># Plot 2: Add your second plot</span></span>
+<span id="cb28-15"><a></a>axes[<span class="dv">1</span>].plot(e_init[<span class="dv">1</span>][:, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb28-16"><a></a>axes[<span class="dv">1</span>].set_title(<span class="st">"E-field component 2 (x-direction)"</span>)</span>
+<span id="cb28-17"><a></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb28-18"><a></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">"Value"</span>)</span>
+<span id="cb28-19"><a></a></span>
+<span id="cb28-20"><a></a><span class="co"># Plot 3: Add your third plot</span></span>
+<span id="cb28-21"><a></a>axes[<span class="dv">2</span>].plot(e_init[<span class="dv">2</span>][:, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb28-22"><a></a>axes[<span class="dv">2</span>].set_title(<span class="st">"E-field component 3 (x-direction)"</span>)</span>
+<span id="cb28-23"><a></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb28-24"><a></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">"Value"</span>)</span>
+<span id="cb28-25"><a></a></span>
+<span id="cb28-26"><a></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>e_init[1].shape = (25, 11, 2)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/cell-13-output-2.png" width="1430" height="374"></p>
+<p><img data-src="index_files/figure-revealjs/cell-12-output-2.png" width="1430" height="374"></p>
 </figure>
 </div>
 </div>
@@ -808,47 +865,51 @@ key = np.float64(0.03)   shape = [(25, 11, 2), (25, 11, 2), (25, 11, 2)]</code><
 </section>
 <section id="default-launch-files-from-cli" class="slide level2">
 <h2>Default launch files from CLI</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a></a>struphy params MODEL</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb30-1"><a></a>struphy params MODEL</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will create a file <code>params_MODEL.py</code> in the current working directory.</p>
+<div class="fragment">
 <p>To run the model type</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb32-1"><a></a>python params_MODEL.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a></a>python params_MODEL.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
 <p>For parallel runs, use</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb33-1"><a></a>mpirun -n N python params_MODEL.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb32-1"><a></a>mpirun -n N python params_MODEL.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or copy the command to a job script for your cluster’s scheduler (e.g., SLURM, PBS).</p>
+</div>
 </section>
 <section id="launch-file-api" class="slide level2">
 <h2>Launch file API</h2>
-<div id="b14a980d" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> (</span>
-<span id="cb34-2"><a></a>    BaseUnits,</span>
-<span id="cb34-3"><a></a>    DerhamOptions,</span>
-<span id="cb34-4"><a></a>    EnvironmentOptions,</span>
-<span id="cb34-5"><a></a>    FieldsBackground,</span>
-<span id="cb34-6"><a></a>    Simulation,</span>
-<span id="cb34-7"><a></a>    Time,</span>
-<span id="cb34-8"><a></a>    domains,</span>
-<span id="cb34-9"><a></a>    equils,</span>
-<span id="cb34-10"><a></a>    grids,</span>
-<span id="cb34-11"><a></a>    perturbations,</span>
-<span id="cb34-12"><a></a>)</span>
-<span id="cb34-13"><a></a></span>
-<span id="cb34-14"><a></a><span class="co"># For particles:</span></span>
-<span id="cb34-15"><a></a><span class="im">from</span> struphy <span class="im">import</span> (</span>
-<span id="cb34-16"><a></a>    BinningPlot,</span>
-<span id="cb34-17"><a></a>    BoundaryParameters,</span>
-<span id="cb34-18"><a></a>    KernelDensityPlot,</span>
-<span id="cb34-19"><a></a>    LoadingParameters,</span>
-<span id="cb34-20"><a></a>    WeightsParameters,</span>
-<span id="cb34-21"><a></a>    maxwellians,</span>
-<span id="cb34-22"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="42f17c21" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> (</span>
+<span id="cb33-2"><a></a>    BaseUnits,</span>
+<span id="cb33-3"><a></a>    DerhamOptions,</span>
+<span id="cb33-4"><a></a>    EnvironmentOptions,</span>
+<span id="cb33-5"><a></a>    FieldsBackground,</span>
+<span id="cb33-6"><a></a>    Simulation,</span>
+<span id="cb33-7"><a></a>    Time,</span>
+<span id="cb33-8"><a></a>    domains,</span>
+<span id="cb33-9"><a></a>    equils,</span>
+<span id="cb33-10"><a></a>    grids,</span>
+<span id="cb33-11"><a></a>    perturbations,</span>
+<span id="cb33-12"><a></a>)</span>
+<span id="cb33-13"><a></a></span>
+<span id="cb33-14"><a></a><span class="co"># For particles:</span></span>
+<span id="cb33-15"><a></a><span class="im">from</span> struphy <span class="im">import</span> (</span>
+<span id="cb33-16"><a></a>    BinningPlot,</span>
+<span id="cb33-17"><a></a>    BoundaryParameters,</span>
+<span id="cb33-18"><a></a>    KernelDensityPlot,</span>
+<span id="cb33-19"><a></a>    LoadingParameters,</span>
+<span id="cb33-20"><a></a>    WeightsParameters,</span>
+<span id="cb33-21"><a></a>    maxwellians,</span>
+<span id="cb33-22"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="example-linearmhd" class="slide level2 scrollable">
 <h2>Example: LinearMHD</h2>
-<div id="78d00733" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a></a><span class="im">from</span> struphy.models <span class="im">import</span> LinearMHD</span>
-<span id="cb35-2"><a></a>LinearMHD.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div id="d5bc2349" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a></a><span class="im">from</span> struphy.models <span class="im">import</span> LinearMHD</span>
+<span id="cb34-2"><a></a>LinearMHD.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <p>Linear ideal MHD with zero-flow equilibrium for magnetohydrodynamic wave propagation.</p>
 
@@ -1019,48 +1080,48 @@ model = LinearMHD()
 </section>
 <section id="example-linearmhd-ctd." class="slide level2">
 <h2>Example: LinearMHD (ctd.)</h2>
-<div id="53c8b748" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a></a>model <span class="op">=</span> LinearMHD()</span>
-<span id="cb36-2"><a></a>domain <span class="op">=</span> domains.DESCunit()</span>
-<span id="cb36-3"><a></a>equil <span class="op">=</span> equils.DESCequilibrium(use_nfp<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb36-4"><a></a></span>
-<span id="cb36-5"><a></a>sim <span class="op">=</span> Simulation(</span>
-<span id="cb36-6"><a></a>    model<span class="op">=</span>model,</span>
-<span id="cb36-7"><a></a>    domain<span class="op">=</span>domain,</span>
-<span id="cb36-8"><a></a>    equil<span class="op">=</span>equil,</span>
-<span id="cb36-9"><a></a>)</span>
-<span id="cb36-10"><a></a></span>
-<span id="cb36-11"><a></a>sim.show_domain(scalars<span class="op">=</span><span class="st">"absB0"</span>, window_size <span class="op">=</span> (<span class="dv">850</span>, <span class="dv">250</span>), zoom_factor<span class="op">=</span><span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2ba56f99" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a></a>model <span class="op">=</span> LinearMHD()</span>
+<span id="cb35-2"><a></a>domain <span class="op">=</span> domains.DESCunit()</span>
+<span id="cb35-3"><a></a>equil <span class="op">=</span> equils.DESCequilibrium(use_nfp<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb35-4"><a></a></span>
+<span id="cb35-5"><a></a>sim <span class="op">=</span> Simulation(</span>
+<span id="cb35-6"><a></a>    model<span class="op">=</span>model,</span>
+<span id="cb35-7"><a></a>    domain<span class="op">=</span>domain,</span>
+<span id="cb35-8"><a></a>    equil<span class="op">=</span>equil,</span>
+<span id="cb35-9"><a></a>)</span>
+<span id="cb35-10"><a></a></span>
+<span id="cb35-11"><a></a>sim.show_domain(scalars<span class="op">=</span><span class="st">"absB0"</span>, window_size <span class="op">=</span> (<span class="dv">850</span>, <span class="dv">250</span>), zoom_factor<span class="op">=</span><span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/cell-16-output-1.png" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/cell-15-output-1.png" class="r-stretch"></section>
 <section id="line-highlighting" class="slide level2">
 <h2>Line Highlighting</h2>
 <ul>
 <li>Highlight specific lines for emphasis</li>
 <li>Incrementally highlight additional lines</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-code-line-numbers="4-5|7-8|10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb37-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb37-3"><a></a></span>
-<span id="cb37-4"><a></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="cb37-5"><a></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="cb37-6"><a></a>fig, ax <span class="op">=</span> plt.subplots(subplot_kw<span class="op">=</span>{<span class="st">'projection'</span>: <span class="st">'polar'</span>})</span>
-<span id="cb37-7"><a></a>ax.plot(theta, r)</span>
-<span id="cb37-8"><a></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="cb37-9"><a></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb37-10"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-code-line-numbers="4-5|7-8|10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb36-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb36-3"><a></a></span>
+<span id="cb36-4"><a></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
+<span id="cb36-5"><a></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
+<span id="cb36-6"><a></a>fig, ax <span class="op">=</span> plt.subplots(subplot_kw<span class="op">=</span>{<span class="st">'projection'</span>: <span class="st">'polar'</span>})</span>
+<span id="cb36-7"><a></a>ax.plot(theta, r)</span>
+<span id="cb36-8"><a></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
+<span id="cb36-9"><a></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb36-10"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="executable-code" class="slide level2">
 <h2>Executable Code</h2>
-<div id="12608397" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> domains</span>
-<span id="cb38-2"><a></a>domain <span class="op">=</span> domains.Cuboid()</span>
-<span id="cb38-3"><a></a>domain.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5fc826dc" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a></a><span class="im">from</span> struphy <span class="im">import</span> domains</span>
+<span id="cb37-2"><a></a>domain <span class="op">=</span> domains.Cuboid()</span>
+<span id="cb37-3"><a></a>domain.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/cell-17-output-1.png" width="961" height="450"></p>
+<p><img data-src="index_files/figure-revealjs/cell-16-output-1.png" width="961" height="450"></p>
 </figure>
 </div>
 </div>
@@ -1071,17 +1132,17 @@ model = LinearMHD()
 <p><a href="https://www.mathjax.org/">MathJax</a> rendering of equations to HTML</p>
 <div class="columns">
 <div class="column" style="width:40%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource tex number-lines code-with-copy"><code class="sourceCode latex"><span id="cb39-1"><a></a><span class="kw">\begin</span>{<span class="ex">gather*</span>}</span>
-<span id="cb39-2"><a></a><span class="ss">a_1=b_1+c_1</span><span class="sc">\\</span></span>
-<span id="cb39-3"><a></a><span class="ss">a_2=b_2+c_2-d_2+e_2</span></span>
-<span id="cb39-4"><a></a><span class="kw">\end</span>{<span class="ex">gather*</span>}</span>
-<span id="cb39-5"><a></a></span>
-<span id="cb39-6"><a></a><span class="kw">\begin</span>{<span class="ex">align</span>}</span>
-<span id="cb39-7"><a></a><span class="ss">a_{11}&amp; =b_{11}&amp;</span></span>
-<span id="cb39-8"><a></a><span class="ss">  a_{12}&amp; =b_{12}</span><span class="sc">\\</span></span>
-<span id="cb39-9"><a></a><span class="ss">a_{21}&amp; =b_{21}&amp;</span></span>
-<span id="cb39-10"><a></a><span class="ss">  a_{22}&amp; =b_{22}+c_{22}</span></span>
-<span id="cb39-11"><a></a><span class="kw">\end</span>{<span class="ex">align</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource tex number-lines code-with-copy"><code class="sourceCode latex"><span id="cb38-1"><a></a><span class="kw">\begin</span>{<span class="ex">gather*</span>}</span>
+<span id="cb38-2"><a></a><span class="ss">a_1=b_1+c_1</span><span class="sc">\\</span></span>
+<span id="cb38-3"><a></a><span class="ss">a_2=b_2+c_2-d_2+e_2</span></span>
+<span id="cb38-4"><a></a><span class="kw">\end</span>{<span class="ex">gather*</span>}</span>
+<span id="cb38-5"><a></a></span>
+<span id="cb38-6"><a></a><span class="kw">\begin</span>{<span class="ex">align</span>}</span>
+<span id="cb38-7"><a></a><span class="ss">a_{11}&amp; =b_{11}&amp;</span></span>
+<span id="cb38-8"><a></a><span class="ss">  a_{12}&amp; =b_{12}</span><span class="sc">\\</span></span>
+<span id="cb38-9"><a></a><span class="ss">a_{21}&amp; =b_{21}&amp;</span></span>
+<span id="cb38-10"><a></a><span class="ss">  a_{22}&amp; =b_{22}+c_{22}</span></span>
+<span id="cb38-11"><a></a><span class="kw">\end</span>{<span class="ex">align</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:60%;">
 <span class="math display">\[\begin{gather*}
 a_1=b_1+c_1\\
@@ -1105,7 +1166,7 @@ a_{21}&amp; =b_{21}&amp;
 </div><div class="column" style="width:3%;">
 
 </div><div class="column" style="width:62%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb40-1"><a></a>knitr::kable(head(mtcars)[,c("mpg", "cyl", "disp", "hp", "wt")])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource {r} number-lines code-with-copy"><code class="sourceCode"><span id="cb39-1"><a></a>knitr::kable(head(mtcars)[,c("mpg", "cyl", "disp", "hp", "wt")])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="incremental-lists" class="slide level2">
@@ -1158,7 +1219,7 @@ a_{21}&amp; =b_{21}&amp;
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":false},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,
